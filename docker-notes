@@ -1,0 +1,94 @@
+
+Introduction to docker
+----------------------
+Centuries back, organizations were looking forward to transforming their work with advanced technology as a whole faced constraint by various software, cloud, and on-premises-based infrastructure.
+Years later, Docker and Virtual Machines were introduced to solve these organizational challenges with a container platform. 
+These software platforms simplify the deployment process of applications and microservices.
+
+What is Docker?
+---------------
+Docker is popular virtualization software that helps its users in developing, deploying, monitoring, and running applications in a Docker Container with all their dependencies.
+
+Docker containers include all dependencies (frameworks, libraries, etc.) to run an application in an efficient and bug-free manner.
+
+Docker Containers have the following benefits: 
+
+	Light-weight
+	Applications run in isolation
+	Occupies less space
+	Easily portable and highly secure
+	Short boot-up time
+
+to list local docker images
+---------------------------
+docker images
+
+to list running containers
+--------------------------
+docker ps
+
+to list all(exited and running ) containers
+-------------------------------------------
+docker ps -a
+
+to run the postgres image and create the container
+------------------------------------------------------
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 1010:5432 -d postgres
+
+to connect to some-postgres container from local psql
+------------------------------------------------------
+psql --username=postgres --host=localhost --port=1010
+
+to connect to some-postgres container from container psql
+--------------------------------------------------------
+	- enter into the some-postgres container
+		docker exec -it <container ID> bash
+	- connect using psql
+		psql --username=postgres
+
+
+to containerize back-end application without docker-compose.yml
+------------------------------------------------------------------
+1) to create the image
+-------------------
+- need to create a dockerfile
+- has no extension
+- has a base image
+- keep it in the eclipse project folder
+
+2) change ther connection url in DBUtil.java
+
+3) build project using maven
+		- for this we have to add 2 plugins in the pom.xml 
+		- goal is clean package
+		- as a result the jar file is created in the target folder
+
+4) build the docker file using  
+	docker build . 
+		- this will create an image without a name
+	(or)
+	docker build -t javalin-backend .
+		- we do this in cmd
+		- navigate to the location of the dockerfile and then run the command
+		- this will create an image with the name javalin-backend
+		- outcome of building a docker file - we get an image
+
+5) run the image to create the container
+	docker run -p 9999:7474 javalin-backend
+
+6) confirm by accessing an endpoint of the backend application in postman
+	http://localhost:9999/hello
+
+
+to containerize back-end application with docker-compose.yml
+-------------------------------------------------------------
+1) create docker-compose.yml
+2) write the neccessary configurations in the yml
+3) run the docker command 
+	docker compose up 
+	
+	docker compose down
+	
+	
+	
+	

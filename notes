@@ -1,0 +1,104 @@
+here are are working with javalin framework to create REST endpoints
+
+1) create a simple maven project(similar to P0)
+2) add the javalin dependancy in pom.xml
+3) add the maven compiler plugin and set the java compiler version to 11
+4) do a maven force update to sync your pom.xml with the project  
+
+
+
+format of the data - JSON (JavaScript Object Notation)
+
+// java object
+
+
+BookPojo pojo = new BookPojo();
+pojo.setBookId(101);
+pojo.setBookTitle("Harry Potter");
+
+// JSON represtation
+{
+	"bookId" : 101,
+	"bookTitle" : "Harry Potter"
+}
+
+// Javascript object
+{
+	bookId : 101,
+	bookTitle : "Harry Potter"
+}
+
+
+request
+	every request has a request header and a request body
+response
+	every response has a response header and a reponse body
+
+any incoming data through the request body is JSON
+this JSON should be converted to a pojo
+
+any outgoing data that goes through the response body should be JSON
+so pojo is converted to JSON
+
+							GET			PUT			POST		DELETE
+incomming request body      no			yes			yes			no
+outgoing response body      yes			maybe		yes			no
+
+
+
+SOA - Service Oriented Architecture
+
+What is REST?
+-------------
+
+creating web services here
+the services are exposed through endpoints
+the services provide the resource
+
+A RESTful API is an architectural style for an application program interface (API) that uses HTTP requests to access and use data. That data can be used to GET, PUT, POST and DELETE data types, which refers to the reading, updating, creating and deleting of operations concerning resources.
+
+What is REST API?
+-----------------
+A RESTful API -- also referred to as a RESTful web service or REST API -- is based on representational state transfer (REST), which is an architectural style and approach to communications often used in web services development.
+
+REST technology is generally preferred over other similar technologies. This tends to be the case because REST uses less bandwidth, making it more suitable for efficient internet usage. RESTful APIs can also be built with programming languages such as JavaScript or Python.
+
+A RESTful API uses commands to obtain resources. The state of a resource at any given timestamp is called a resource representation. A RESTful API uses existing HTTP methodologies defined by the RFC 2616 protocol, such as:
+
+GET to retrieve a resource;
+PUT to change the state of or update a resource, which can be an object, file or block;
+POST to create that resource; and
+DELETE to remove it.
+
+Data formats the REST API supports include:
+--------------------------------------------
+
+application/json
+application/xml
+application/x-wbe+xml
+application/x-www-form-urlencoded
+multipart/form-data
+
+RESTful API Design and Architecture Constraints
+-----------------------------------------------
+In order to be a true RESTful API, a web service must adhere to the following six REST architectural constraints:
+
+1) Use of a uniform interface (UI). Resources should be uniquely identifiable through a single URL, and only by using the underlying methods of the network protocol, such as DELETE, PUT and GET with HTTP, should it be possible to manipulate a resource.
+
+GET	/employees
+PUT     /employees
+POST    /employees
+DELETE  /employees/{eid}
+
+2) Client-server based. There should be a clear delineation between the client and server. UI and request-gathering concerns are the client's domain. Data access, workload management and security are the server's domain. This loose coupling of the client and server enables each to be developed and enhanced independent of the other.
+3) Stateless operations. All client-server operations should be stateless, and any state management that is required should take place on the client, not the server.
+4) RESTful resource caching. All resources should allow caching unless explicitly indicated that caching is not possible.
+5) Layered system. REST allows for an architecture composed of multiple layers of servers.
+6) Code on demand. Most of the time, a server will send back static representations of resources in the form of XML or JSON. However, when necessary, servers can send executable code to the client.
+
+REST vs. SOAP
+-------------
+REST and Simple Object Access Protocol (SOAP) offer different methods to invoke a web service. REST is an architectural style, while SOAP defines a standard communication protocol specification for XML-based message exchange. REST applications can use SOAP.
+
+A simple framework to work with Rest - Javalin
+Reference - https://javalin.io/

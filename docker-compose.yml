@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  book-postgres-service: # could choose any name for the service
+    image: postgres:latest
+    ports:
+      - "1414:5432"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - d:/bookdb:/var/lib/postgresql
+      - ./dbscripts:/docker-entrypoint-initdb.d
+  book-javalin-service:
+    image: book-app
+    build: .
+    ports:
+      - 8484:7474
+    depends_on:
+      - book-postgres-service
+ 
+ 
+ 
