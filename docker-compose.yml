@@ -7,7 +7,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
     volumes:
-      - d:/bookdb:/var/lib/postgresql
       - ./dbscripts:/docker-entrypoint-initdb.d
   book-javalin-service:
     image: book-app
